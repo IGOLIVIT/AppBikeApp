@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23B74" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="EquipModel" representedClassName="EquipModel" syncable="YES" codeGenerationType="class">
+        <attribute name="eqEq" optional="YES" attributeType="String"/>
+        <attribute name="eqHave" optional="YES" attributeType="String"/>
+        <attribute name="eqName" optional="YES" attributeType="String"/>
+        <attribute name="eqNeed" optional="YES" attributeType="String"/>
+        <attribute name="eqPart" optional="YES" attributeType="String"/>
+        <attribute name="eqPHave" optional="YES" attributeType="String"/>
+        <attribute name="eqPNeed" optional="YES" attributeType="String"/>
+        <attribute name="eqTHave" optional="YES" attributeType="String"/>
+        <attribute name="eqTNeed" optional="YES" attributeType="String"/>
+        <attribute name="eqTools" optional="YES" attributeType="String"/>
+        <attribute name="eqType" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="RoutModel" representedClassName="RoutModel" syncable="YES" codeGenerationType="class">
+        <attribute name="roColor" optional="YES" attributeType="String"/>
+        <attribute name="roCountry" optional="YES" attributeType="String"/>
+        <attribute name="roFDate" optional="YES" attributeType="String"/>
+        <attribute name="roLoc" optional="YES" attributeType="String"/>
+        <attribute name="roMType" optional="YES" attributeType="String"/>
+        <attribute name="roName" optional="YES" attributeType="String"/>
+        <attribute name="roPart" optional="YES" attributeType="String"/>
+        <attribute name="roSDate" optional="YES" attributeType="String"/>
+        <attribute name="roType" optional="YES" attributeType="String"/>
+    </entity>
+</model>
