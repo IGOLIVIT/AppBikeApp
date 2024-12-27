@@ -28,7 +28,7 @@ struct S4: View {
             VStack {
                 
                 Spacer()
-                
+                                
                 VStack(spacing: 30) {
                     
                     Text("Be Ready for Every Ride")
