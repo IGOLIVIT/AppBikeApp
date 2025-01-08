@@ -127,9 +127,30 @@ struct RoutesView: View {
                                 
                                     VStack(alignment: .leading, spacing: 16) {
                                         
-                                        Text(index.roName ?? "")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 20, weight: .medium))
+                                        HStack {
+                                            
+                                            Text(index.roName ?? "")
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 20, weight: .medium))
+                                         
+                                            Spacer()
+                                            
+                                            Button(action: {
+                                                
+                                                viewModel.selectedRoute = index
+                                                
+                                                withAnimation(.spring()) {
+                                                    
+                                                    viewModel.isDelete = true
+                                                }
+                                                
+                                            }, label: {
+                                                
+                                                Image(systemName: "trash")
+                                                    .foregroundColor(.red)
+                                                    .font(.system(size: 18, weight: .medium))
+                                            })
+                                        }
                                         
                                         HStack {
                                             
@@ -228,9 +249,30 @@ struct RoutesView: View {
                                     
                                     VStack(alignment: .leading, spacing: 16) {
                                         
-                                        Text(index.roName ?? "")
-                                            .foregroundColor(.white)
-                                            .font(.system(size: 20, weight: .medium))
+                                        HStack {
+                                            
+                                            Text(index.roName ?? "")
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 20, weight: .medium))
+                                         
+                                            Spacer()
+                                            
+                                            Button(action: {
+                                                
+                                                viewModel.selectedRoute = index
+                                                
+                                                withAnimation(.spring()) {
+                                                    
+                                                    viewModel.isDelete = true
+                                                }
+                                                
+                                            }, label: {
+                                                
+                                                Image(systemName: "trash")
+                                                    .foregroundColor(.red)
+                                                    .font(.system(size: 18, weight: .medium))
+                                            })
+                                        }
                                         
                                         HStack {
                                             
@@ -292,6 +334,78 @@ struct RoutesView: View {
             
             RouteDetail(viewModel: viewModel)
         })
+        .overlay(
+            
+            ZStack {
+                
+                Color.black.opacity(viewModel.isDelete ? 0.5 : 0)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        
+                        withAnimation(.spring()) {
+                            
+                            viewModel.isDelete = false
+                        }
+                    }
+                
+                VStack(spacing: 19) {
+
+                    Text("Do you want to delete?")
+                        .foregroundColor(.white)
+                        .font(.system(size: 17, weight: .semibold))
+                        .multilineTextAlignment(.center)
+                    
+                    HStack {
+                        
+                        Button(action: {
+                            
+                            CoreDataStack.shared.deleteRoute(withRoName: viewModel.selectedRoute?.roName ?? "", completion: {
+                                
+                                viewModel.fetchRoutes()
+                            })
+                            
+                            withAnimation(.spring()) {
+                                
+                                viewModel.isDelete = false
+                            }
+                            
+                        }, label: {
+                            
+                            Text("Delete")
+                                .foregroundColor(.red)
+                                .font(.system(size: 18, weight: .semibold))
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                            
+                        })
+                        
+                        Button(action: {
+                            
+                            withAnimation(.spring()) {
+                                
+                                viewModel.isDelete = false
+                            }
+                            
+                        }, label: {
+                            
+                            Text("Cancel")
+                                .foregroundColor(.white)
+                                .font(.system(size: 17, weight: .regular))
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 45)
+                            
+                        })
+                    }
+                    .padding(.top, 25)
+
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 20).fill(Color("bg2")))
+                .padding()
+                .offset(y: viewModel.isDelete ? 0 : UIScreen.main.bounds.height)
+            }
+        )
     }
 }
 
